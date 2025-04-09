@@ -1,4 +1,32 @@
-// Array der verfügbaren Gerichte
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: renderFood.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: renderFood.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Array der verfügbaren Gerichte
 const foodItems = [
   { id: 1, name: "Quesadilla", image: "img/food/quesadilla.jpg", price: 6.5, category: "Vegetarisch" },
   { id: 2, name: "Tacos al Pastor", image: "img/food/tacosalpastor.jpg", price: 7, category: "Tacos" },
@@ -25,16 +53,16 @@ Gibt den HTML-Code für einen einzelnen Warenkorb-Eintrag zurück.
 
 function getCartItemHTML(item) {
   return `
-    <div class="cart-item">
-      <span class="item-name">${item.name}</span>
-      <div class="quantity-control">
-        <button onclick="changeQuantity(${item.id}, -1)">-</button>
-        <span>${item.quantity}</span>
-        <button onclick="changeQuantity(${item.id}, 1)">+</button>
-      </div>
-      <span class="price">${(item.price * item.quantity).toFixed(2)} €</span>
-      <button class="remove-btn" onclick="removeFromCart(${item.id})">x</button>
-    </div>
+    &lt;div class="cart-item">
+      &lt;span class="item-name">${item.name}&lt;/span>
+      &lt;div class="quantity-control">
+        &lt;button onclick="changeQuantity(${item.id}, -1)">-&lt;/button>
+        &lt;span>${item.quantity}&lt;/span>
+        &lt;button onclick="changeQuantity(${item.id}, 1)">+&lt;/button>
+      &lt;/div>
+      &lt;span class="price">${(item.price * item.quantity).toFixed(2)} €&lt;/span>
+      &lt;button class="remove-btn" onclick="removeFromCart(${item.id})">x&lt;/button>
+    &lt;/div>
   `;
 }
 
@@ -72,7 +100,7 @@ function renderCart() {
   cartContainer.innerHTML = "";
 
   if (cart.length === 0) {
-    cartContainer.innerHTML = "<p>Dein Warenkorb ist leer.</p>";
+    cartContainer.innerHTML = "&lt;p>Dein Warenkorb ist leer.&lt;/p>";
     return;
   }
 
@@ -81,7 +109,7 @@ function renderCart() {
   });
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  cartContainer.innerHTML += `<hr><p><strong>Gesamt: ${total.toFixed(2)} €</strong></p>`;
+  cartContainer.innerHTML += `&lt;hr>&lt;p>&lt;strong>Gesamt: ${total.toFixed(2)} €&lt;/strong>&lt;/p>`;
 }
 
 /**
@@ -94,7 +122,7 @@ function changeQuantity(id, delta) {
   const item = cart.find(i => i.id === id);
   if (!item) return;
   item.quantity += delta;
-  if (item.quantity <= 0) {
+  if (item.quantity &lt;= 0) {
     cart = cart.filter(i => i.id !== id);
   }
   renderCart();
@@ -136,12 +164,12 @@ function renderMenu(filter = "Alle") {
 
   filteredItems.forEach((item) => {
     menuSection.innerHTML += `
-      <div class="food-card">
-        <img src="${item.image}" alt="${item.name}" />
-        <h2>${item.name}</h2>
-        <p>${item.price.toFixed(2)} €</p>
-        <button onclick="addToCart(${item.id})">In den Warenkorb</button>
-      </div>
+      &lt;div class="food-card">
+        &lt;img src="${item.image}" alt="${item.name}" />
+        &lt;h2>${item.name}&lt;/h2>
+        &lt;p>${item.price.toFixed(2)} €&lt;/p>
+        &lt;button onclick="addToCart(${item.id})">In den Warenkorb&lt;/button>
+      &lt;/div>
     `;
   });
 }
@@ -221,7 +249,7 @@ function closeOrderModal() {
   document.getElementById("order-success").classList.add("hidden");
 }
 
-/* Funktionen für Toggle & Darkmode */
+/* Funktionen für Toggle &amp; Darkmode */
 /**
  * Schaltet den Warenkorb-Toggle ein (insbesondere für mobile Geräte).
  */
@@ -289,14 +317,14 @@ function sortItems(items, sortValue) {
 function getOrderSummaryHTML(name, address, note, cart) {
   const summary = cart.map(item =>
     `${item.name} x ${item.quantity} = ${(item.price * item.quantity).toFixed(2)} €`
-  ).join("<br>");
+  ).join("&lt;br>");
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   return `
-    <strong>Name:</strong> ${name}<br>
-    <strong>Adresse:</strong> ${address}<br><br>
-    <strong>Bestellung:</strong><br>${summary}<br><br>
-    <strong>Gesamt:</strong> ${total.toFixed(2)} €<br>
-    <strong>Notiz:</strong> ${note || "-"}
+    &lt;strong>Name:&lt;/strong> ${name}&lt;br>
+    &lt;strong>Adresse:&lt;/strong> ${address}&lt;br>&lt;br>
+    &lt;strong>Bestellung:&lt;/strong>&lt;br>${summary}&lt;br>&lt;br>
+    &lt;strong>Gesamt:&lt;/strong> ${total.toFixed(2)} €&lt;br>
+    &lt;strong>Notiz:&lt;/strong> ${note || "-"}
   `;
 }
 
@@ -346,3 +374,26 @@ window.closeOrderModal = closeOrderModal;
 window.addToCart = addToCart;
 window.changeQuantity = changeQuantity;
 window.removeFromCart = removeFromCart;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addToCart">addToCart</a></li><li><a href="global.html#changeQuantity">changeQuantity</a></li><li><a href="global.html#closeOrderModal">closeOrderModal</a></li><li><a href="global.html#getCartItemHTML">getCartItemHTML</a></li><li><a href="global.html#getOrderSummaryHTML">getOrderSummaryHTML</a></li><li><a href="global.html#handleOrder">handleOrder</a></li><li><a href="global.html#removeFromCart">removeFromCart</a></li><li><a href="global.html#renderCart">renderCart</a></li><li><a href="global.html#renderFilters">renderFilters</a></li><li><a href="global.html#renderMenu">renderMenu</a></li><li><a href="global.html#saveCart">saveCart</a></li><li><a href="global.html#setupCartToggle">setupCartToggle</a></li><li><a href="global.html#setupDarkmode">setupDarkmode</a></li><li><a href="global.html#setupSortListener">setupSortListener</a></li><li><a href="global.html#sortItems">sortItems</a></li><li><a href="global.html#submitOrder">submitOrder</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed Apr 09 2025 18:48:16 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
