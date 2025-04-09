@@ -346,3 +346,12 @@ window.closeOrderModal = closeOrderModal;
 window.addToCart = addToCart;
 window.changeQuantity = changeQuantity;
 window.removeFromCart = removeFromCart;
+
+/**
+ * Adds a dish to the cart.
+ * @param {number} id - The ID of the dish.
+ * @returns {void}
+ */
+function addToCart(id) {
+  // ...
+}

@@ -1,0 +1,12 @@
+{
+    "source": {
+      "include": ["renderFood.js"],
+      "exclude": ["node_modules", "fonts", "styles", "img"]
+    },
+    "opts": {
+      "destination": "./docs",
+      "recurse": true,
+      "template": "default"
+    }
+  }
+  
